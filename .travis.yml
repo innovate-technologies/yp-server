@@ -1,0 +1,17 @@
+language: go
+dist: xenial
+go: "1.x.x"
+
+stages:
+- name: test
+- name: release
+  if: tag IS present
+
+jobs:
+  include:
+  - stage: test
+    name: Go Tests
+    language: go
+  - stage: release
+    name: "Release"
+    script: curl -sL https://git.io/goreleaser | bash
