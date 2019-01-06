@@ -18,7 +18,8 @@ jobs:
     language: go
     script:
       - go build ./
-      - go test ./...
+      - go vet ./...
+      - go -v test ./...
   - stage: release
     name: "Release"
     script: curl -sL https://git.io/goreleaser | bash
