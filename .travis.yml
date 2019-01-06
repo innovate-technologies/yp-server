@@ -16,6 +16,9 @@ jobs:
   - stage: test
     name: Go Tests
     language: go
+    script:
+      - go build ./
+      - go test ./...
   - stage: release
     name: "Release"
     script: curl -sL https://git.io/goreleaser | bash
