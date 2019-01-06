@@ -22,7 +22,7 @@ func main() {
 
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
+		return c.String(http.StatusOK, "Hello, World! Welcome to the discover.fm YP server, please come back later")
 	})
 	e.Any("/icecast", icecastHandle)
 	e.Logger.Fatal(e.Start(":" + conf.Port))
