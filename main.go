@@ -25,5 +25,6 @@ func main() {
 		return c.String(http.StatusOK, "Hello, World! Welcome to the discover.fm YP server, please come back later")
 	})
 	e.Any("/icecast", icecastHandle)
+	e.Any("/yp2", yp2Handle)
 	e.Logger.Fatal(e.Start(":" + conf.Port))
 }
