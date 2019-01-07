@@ -110,7 +110,7 @@ func yp2Handle(c echo.Context) error {
 	c.Bind(&fields)
 
 	if len(fields.Commands) == 0 {
-		return c.String(http.StatusBadRequest, "")
+		return sendXML(NewYP2Response(), c)
 	}
 
 	if fields.Commands[0].Operation == "add" {
@@ -136,7 +136,7 @@ func handleYP2Add(fields YP2Request, c echo.Context) error {
 	resp.Response[0].ID = "2013197"        // no idea what this is :/
 	resp.Response[0].StationID = "1852379" // dummuy data for now
 	resp.Response[0].UpdateFrequency = "600"
-	resp.Response[0].PublicIP = c.RealIP()
+	resp.Response[0].PublicIP = strings.Split(c.RealIP(), ",")[0]
 	resp.Response[0].Sation = &YP2Station{
 		Name:   "Discover.fm YP OK",
 		Genre:  "Classical",
@@ -160,7 +160,7 @@ func handleYP2Update(fields YP2Request, c echo.Context) error {
 	resp.Response[0].ID = "2013197"        // no idea what this is :/
 	resp.Response[0].StationID = "1852379" // dummuy data for now
 	resp.Response[0].UpdateFrequency = "600"
-	resp.Response[0].PublicIP = c.RealIP()
+	resp.Response[0].PublicIP = strings.Split(c.RealIP(), ",")[0]
 	resp.Response[0].Sation = &YP2Station{
 		Name:   "Discover.fm YP OK",
 		Genre:  "Classical",
